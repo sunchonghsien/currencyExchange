@@ -1,8 +1,6 @@
 package com.example.currencyexchange.dao.jdbc;
 
-import com.example.currencyexchange.model.entity.UserSatisfaction;
-import com.example.currencyexchange.model.resp.CommentsRsp;
-import com.example.currencyexchange.model.resp.Page;
+import com.example.currencyexchange.model.entity.Page;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +31,6 @@ public class UserSatisfactionJdbc extends BaseJdbc {
         sql.append("ORDER BY us.create_time DESC,us.comment");
         params.addValue("userId", userId);
         params.addValue("satisfy", satisfy);
-        return super.queryPage(sql, params, page, CommentsRsp.class);
+        return super.queryPage(sql, params, page);
     }
 }

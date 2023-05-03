@@ -1,16 +1,12 @@
 package com.example.currencyexchange.model.resp;
 
-import jakarta.persistence.*;
-import lombok.Builder;
+import com.example.currencyexchange.model.entity.Comments;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import java.util.List;
 
-import java.sql.Timestamp;
-
-@Builder
-public class CommentsRsp {
-    public String realName;
-    public String nickName;
-    public String selfPhoto;
-    public Integer satisfy;
-    public String comment;
-    public Timestamp createTime;
+@Data
+@AllArgsConstructor
+public class CommentsRsp extends PaginationRsp {
+    public List<Comments> list;
 }

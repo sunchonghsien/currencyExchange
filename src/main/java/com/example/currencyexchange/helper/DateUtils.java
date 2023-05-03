@@ -36,6 +36,9 @@ public class DateUtils {
         ZonedDateTime zonedDateTime = newZonedDateTimeOf(local);
         return zonedDateTime.format(ofPattern);
     }
+    public static String timestampToY_M_D_H_M_S(long timestamp) {
+        return timestampFormat(timestamp,Constant.DATE.YYYY_MM_DD_HH_MM_SS);
+    }
 
     public static Timestamp timestamp(long timestamp) {
         ZonedDateTime dateTime = newZonedDateTimeOf(newLocalDateTime(timestamp));

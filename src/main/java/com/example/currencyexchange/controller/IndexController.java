@@ -18,6 +18,7 @@ import org.python.google.common.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -100,6 +101,14 @@ public class IndexController extends BaseController {
         } else {
             return error("信箱已註冊");
         }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("image")
+    public ResponseEntity<?> showImage(@Validated @NotBlank String fileName) {
+        return printImage(FileUtils.getImage(fileName));
+
     }
 }
 

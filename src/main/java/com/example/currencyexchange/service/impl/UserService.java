@@ -1,13 +1,17 @@
 package com.example.currencyexchange.service.impl;
 
 import com.example.currencyexchange.dao.repository.UserRepository;
+import com.example.currencyexchange.helper.FileUtils;
 import com.example.currencyexchange.helper.UserInfo;
 import com.example.currencyexchange.model.entity.User;
 import com.example.currencyexchange.model.req.CompleteInfoVo;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.Method;
 import java.util.Optional;
 
 @Service
@@ -48,6 +52,15 @@ public class UserService {
         save(user);
     }
 
+    public void saveImage(MultipartFile file, String directory) throws Exception {
+        User user = UserInfo.cacheGet();
+        Method setMethod = user.getClass().getDeclaredMethod("set" + StringUtils.capitalize(directory), String.class);
+        Method getMethod = user.getClass().getDeclaredMethod("get" + StringUtils.capitalize(directory));
+        Object decode = getMethod.invoke(user);
+        String saveValue = FileUtils.delAndSave(file, directory, decode);
+        setMethod.invoke(user, saveValue);
+        save(user);
+    }
 
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);

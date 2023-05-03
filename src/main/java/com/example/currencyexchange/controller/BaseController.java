@@ -15,6 +15,10 @@ public class BaseController {
         return ResponseUtils.error(msg);
     }
 
+    public ResponseEntity<?> printImage(Object data) {
+        return ResponseUtils.printImage(data);
+    }
+
     public ResponseEntity<?> data(Object data) {
         return ResponseUtils.data(data);
     }

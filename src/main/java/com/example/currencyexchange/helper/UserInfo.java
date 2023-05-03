@@ -34,6 +34,9 @@ public class UserInfo {
         throw new RuntimeException("請登入帳號");
     }
 
+    public static String userId() {
+        return cacheGet().getId().toString();
+    }
 
     public static void cacheUpdate(User user) {
         String authorization = getAuthorization();

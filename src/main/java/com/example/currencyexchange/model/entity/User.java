@@ -32,8 +32,8 @@ public class User implements Serializable {
     private String realName;
     @Column(name = "nick_name", columnDefinition = "default 沒有暱稱的浪人", length = 50)
     private String nickName;
-    @Column(name = "self_photo", columnDefinition = "comment '頭像'")
-    private String selfPhoto;
+    @Column(name = "avatar", columnDefinition = "comment '頭像'")
+    private String avatar;
     @Column(name = "self_desc", columnDefinition = "TEXT")
     private String selfDesc;
     @Column(name = "password", nullable = false, length = 100)
@@ -48,10 +48,6 @@ public class User implements Serializable {
     private String device;
     @Column(name = "city", length = 50)
     private String city;
-    @Column(name = "identify_photo", columnDefinition = "comment '識別照'")
-    private String identifyPhoto;
-    @Column(name = "id_photo", columnDefinition = "comment '證件照'")
-    private String idPhoto;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time")

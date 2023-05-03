@@ -1,10 +1,10 @@
 package com.example.currencyexchange.model.resp;
 
-import com.example.currencyexchange.helper.ClassIteratorBuild;
+import com.example.currencyexchange.helper.ClassIteratorConvert;
 import lombok.Builder;
 
 @Builder
-public class PersonalInfoRsp extends ClassIteratorBuild {
+public class PersonalInfoRsp extends ClassIteratorConvert {
 
     public Integer satisfy;
     public Integer comments;

@@ -1,24 +1,30 @@
 package com.example.currencyexchange.controller;
 
 import com.example.currencyexchange.enums.GenderEnum;
+import com.example.currencyexchange.helper.EncryptionUtils;
+import com.example.currencyexchange.helper.FileUtils;
 import com.example.currencyexchange.helper.UserInfo;
 import com.example.currencyexchange.model.entity.User;
 import com.example.currencyexchange.model.req.CompleteInfoVo;
 import com.example.currencyexchange.model.resp.PersonalInfoRsp;
 import com.example.currencyexchange.service.impl.UserSatisfactionService;
 import com.example.currencyexchange.service.impl.UserService;
+import com.example.currencyexchange.validation.FileImage;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 @Controller
@@ -62,5 +68,13 @@ public class UserController extends BaseController {
             throw new RuntimeException("參數錯誤");
         }
         return data(satisfactionService.comments(satisfy, page));
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/saveImage")
+    public ResponseEntity<?> saveImage(String directory, @FileImage MultipartFile file) throws Exception {
+
+        return ok("成功");
+
     }
 }
